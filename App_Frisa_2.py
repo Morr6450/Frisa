@@ -18,7 +18,8 @@ fl = st.file_uploader(':file uploader: Sube un archivo',type=(["csv","txt","xlsx
 if fl is not None:
     filename = fl.name
     #st.write(filename)
-    df = pd.read_csv(filename)
+    #df = pd.read_csv(filename)
+    df = pd.read_csv(fl, encoding='utf-8-sig')  # Utilizar la codificación utf-8-sig para manejar caracteres especiales
 #else:
     #Nombre del archivo dentro del GitHub
     #df = pd.read_csv('Prueba_de_datos.csv')
@@ -44,7 +45,7 @@ if add_data:
     #df.append(new_row, ignore_index=True)
     df.loc[len(df)] = new_data
     #Nombre del archivo dentro del GitHub para actualizarlo
-    df.to_csv('Prueba_de_datos.csv',index=False)
+    df.to_csv('Prueba_de_datos.csv',index=False, encoding='utf-8-sig')
 # Agregar el botón de descarga del archivo CSV actualizado
 if not df.empty:
     csv_filename = 'Prueba_de_datos_actualizado.csv'
