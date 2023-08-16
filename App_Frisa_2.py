@@ -13,12 +13,11 @@ fl = st.file_uploader(':file uploader: Sube un archivo', type=(["csv", "txt", "x
 if fl is not None:
     content = fl.read()
     content_type = fl.type
-    decoded_content = base64.b64decode(content)
     
     if content_type == 'application/vnd.ms-excel':
-        df = pd.read_excel(io.BytesIO(decoded_content), encoding='utf-8-sig')
+        df = pd.read_excel(io.BytesIO(content), encoding='utf-8')
     else:
-        df = pd.read_csv(io.StringIO(decoded_content.decode('utf-8-sig')), encoding='utf-8-sig')
+        df = pd.read_csv(io.StringIO(content.decode('utf-8-sig')), encoding='utf-8-sig')
 
 st.header('Archivo existente')
 st.write(df)
