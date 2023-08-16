@@ -19,7 +19,7 @@ if fl is not None:
     filename = fl.name
     #st.write(filename)
     #df = pd.read_csv(filename)
-    df = pd.read_csv(fl, encoding='utf-8-sig')  # Utilizar la codificación utf-8-sig para manejar caracteres especiales
+    df = pd.read_csv(filename, encoding='utf-8-sig')  # Utilizar la codificación utf-8-sig para manejar caracteres especiales
 #else:
     #Nombre del archivo dentro del GitHub
     #df = pd.read_csv('Prueba_de_datos.csv')
