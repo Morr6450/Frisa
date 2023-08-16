@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import os
 import warnings
+import base64
 
 warnings.filterwarnings('ignore')
 
@@ -48,4 +49,6 @@ if add_data:
 if not df.empty:
     csv_filename = 'Prueba_de_datos_actualizado.csv'
     csv_data = df.to_csv(index=False, encoding='utf-8-sig')
-    st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
+    b64 = base64.b64encode(csv_data.encode()).decode()
+    #st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
+    st.markdown(f'<a href="data:file/csv;base64,{b64}" download="{csv_filename}">Descargar CSV Actualizado</a>', unsafe_allow_html=True)
