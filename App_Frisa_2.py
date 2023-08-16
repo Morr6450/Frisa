@@ -47,5 +47,5 @@ if add_data:
 # Agregar el botón de descarga del archivo CSV actualizado
 if not df.empty:
     csv_filename = 'Prueba_de_datos_actualizado.csv'
-    csv_data = df.to_csv(index=False)
+    csv_data = df.to_csv(index=False, encoding='utf-8-sig')
     st.download_button(label="Descargar CSV Actualizado", data=csv_data, file_name=csv_filename)
