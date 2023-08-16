@@ -30,8 +30,7 @@ if add_data:
     #cada variable nueva con la columna donde ira
     new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
                 "Correo Electronico":user_mail,"Telefono":int(user_phone),"Convocatoria":user_type}
-    #df = df.append(pd.Series([new_data],columns=df.columns))
-    #df = pd.concat([new_data,df.loc[:]]).reset_index(drop=True)
-    df.append(new_data, ignore_index=True)
+    new_row = pd.Series(new_data)
+    df = df.append(new_row, ignore_index=True)
     #Nombre del archivo dentro del GitHub para actualizarlo
     df.to_csv('Prueba_de_datos.csv',index=False)
