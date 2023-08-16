@@ -31,6 +31,6 @@ if add_data:
     new_data = {'Nombre': user_name,"Apellido paterno":user_flastname,"Apellido materno":user_slastname,
                 "Correo Electronico":user_mail,"Telefono":int(user_phone),"Convocatoria":user_type}
     new_row = pd.Series(new_data)
-    df = df.append(new_row, ignore_index=True)
+    df.append(new_row, ignore_index=True)
     #Nombre del archivo dentro del GitHub para actualizarlo
     df.to_csv('Prueba_de_datos.csv',index=False)
