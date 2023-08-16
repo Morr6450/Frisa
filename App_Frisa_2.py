@@ -36,8 +36,8 @@ add_data = options_form.form_submit_button()
 if add_data:
     new_data = {'Nombre': user_name, "Apellido paterno": user_flastname, "Apellido materno": user_slastname,
                 "Correo Electronico": user_mail, "Telefono": int(user_phone), "Tipo de Convocatoria": user_type}
-    df = df.append(new_data, ignore_index=True)
-
+    #df = df.append(new_data, ignore_index=True)
+    df.loc[len(df)] = new_data
     # Guardar el DataFrame actualizado en el archivo CSV y codificación utf-8-sig
     df.to_csv('Prueba_de_datos.csv', index=False, encoding='utf-8-sig')
 
