@@ -32,8 +32,10 @@ if add_data:
     #df = df.append(new_data, ignore_index=True)
     df.loc[len(df)] = new_data
     # Guardar el DataFrame actualizado en el archivo CSV con codificación utf-8
-    df.to_csv(index=False).encode('utf-8')
+    #df.to_csv(index=False).encode('utf-8')
 
+def convert_df(df):
+   return df.to_csv(index=False).encode('utf-8')
 # Agregar el botón de descarga del archivo CSV actualizado
 if not df.empty:
     csv = convert_df(df)
