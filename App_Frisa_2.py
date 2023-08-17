@@ -10,7 +10,7 @@ st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allo
 fl = st.file_uploader(':file uploader: Sube un archivo', type=(["csv"]))
 
 if fl is not None:
-    df = pd.read_csv(fl, encoding='utf-8')
+    df = pd.read_csv(fl)
 
 st.header('Archivo existente')
 st.write(df)
