@@ -38,7 +38,7 @@ if add_data:
                 "Correo Electronico": user_mail, "Telefono": int(user_phone), "Tipo de Convocatoria": user_type}
     #df = df.append(new_data, ignore_index=True)
     df.loc[len(df)] = new_data
-    # Guardar el DataFrame actualizado en el archivo CSV y codificación utf-8-sig
+    # Guardar el DataFrame actualizado en el archivo CSV y codificación cp1252
     df.to_csv('Prueba_de_datos.csv', index=False, encoding='cp1252')
 
 # Agregar el botón de descarga del archivo CSV actualizado
