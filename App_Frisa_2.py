@@ -15,9 +15,9 @@ if fl is not None:
     content_type = fl.type
     
     if content_type == 'application/vnd.ms-excel':
-        df = pd.read_excel(io.BytesIO(content), encoding='cp1252')
+        df = pd.read_excel(io.BytesIO(content), encoding='utf-8')
     else:
-        df = pd.read_csv(io.StringIO(content.decode('utf-8')), encoding='cp1252')
+        df = pd.read_csv(io.StringIO(content.decode('utf-8')), encoding='utf-8')
 
 st.header('Archivo existente')
 st.write(df)
@@ -36,14 +36,14 @@ add_data = options_form.form_submit_button()
 if add_data:
     new_data = {'Nombre': user_name, "Apellido paterno": user_flastname, "Apellido materno": user_slastname,
                 "Correo Electronico": user_mail, "Telefono": int(user_phone), "Tipo de Convocatoria": user_type}
-    #df = df.append(new_data, ignore_index=True)
-    df.loc[len(df)] = new_data
-    # Guardar el DataFrame actualizado en el archivo CSV y codificación cp1252
-    df.to_csv('Prueba_de_datos.csv', index=False, encoding='cp1252')
+    df = df.append(new_data, ignore_index=True)
+
+    # Guardar el DataFrame actualizado en el archivo CSV y codificación utf-8
+    df.to_csv('Prueba_de_datos.csv', index=False, encoding='utf-8')
 
 # Agregar el botón de descarga del archivo CSV actualizado
 if not df.empty:
     csv_filename = 'Prueba_de_datos_actualizado.csv'
-    csv_data = df.to_csv(index=False, encoding='cp1252')
+    csv_data = df.to_csv(index=False, encoding='utf-8')
     b64 = base64.b64encode(csv_data.encode()).decode()
     st.markdown(f'<a href="data:file/csv;base64,{b64}" download="{csv_filename}">Descargar CSV Actualizado</a>', unsafe_allow_html=True)
