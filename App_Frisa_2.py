@@ -1,23 +1,16 @@
 import streamlit as st
 import pandas as pd
 import base64
-import io
 
 st.set_page_config(page_title='Fundacion Frisa', page_icon=':man-woman-boy-boy:', layout='wide')
 
 st.title(' :man-woman-boy-boy: :earth_americas: Fundacion Frisa')
 st.markdown('<style>div.block-container{padding-top:1rem;}</style>', unsafe_allow_html=True)
 
-fl = st.file_uploader(':file uploader: Sube un archivo', type=(["csv", "txt", "xlsx", "xls"]))
+fl = st.file_uploader(':file uploader: Sube un archivo', type=(["csv"]))
 
 if fl is not None:
-    content = fl.read()
-    content_type = fl.type
-    
-    if content_type == 'application/vnd.ms-excel':
-        df = pd.read_excel(io.BytesIO(content), encoding='utf-8')
-    else:
-        df = pd.read_csv(io.StringIO(content.decode('utf-8')), encoding='utf-8')
+    df = pd.read_csv(fl, encoding='utf-8')
 
 st.header('Archivo existente')
 st.write(df)
@@ -38,7 +31,7 @@ if add_data:
                 "Correo Electronico": user_mail, "Telefono": int(user_phone), "Tipo de Convocatoria": user_type}
     #df = df.append(new_data, ignore_index=True)
     df.loc[len(df)] = new_data
-    # Guardar el DataFrame actualizado en el archivo CSV y codificación utf-8
+    # Guardar el DataFrame actualizado en el archivo CSV con codificación utf-8
     df.to_csv('Prueba_de_datos.csv', index=False, encoding='utf-8')
 
 # Agregar el botón de descarga del archivo CSV actualizado
