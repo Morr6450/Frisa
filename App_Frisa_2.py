@@ -32,11 +32,15 @@ if add_data:
     #df = df.append(new_data, ignore_index=True)
     df.loc[len(df)] = new_data
     # Guardar el DataFrame actualizado en el archivo CSV con codificación utf-8
-    df.to_csv('Prueba_de_datos.csv', index=False, encoding='utf-8')
+    df.to_csv(index=False).encode('utf-8')
 
 # Agregar el botón de descarga del archivo CSV actualizado
 if not df.empty:
-    csv_filename = 'Prueba_de_datos_actualizado.csv'
-    csv_data = df.to_csv(index=False, encoding='utf-8')
-    b64 = base64.b64encode(csv_data.encode()).decode()
-    st.markdown(f'<a href="data:file/csv;base64,{b64}" download="{csv_filename}">Descargar CSV Actualizado</a>', unsafe_allow_html=True)
+    csv = convert_df(df)
+    st.download_button(
+       "Press to Download",
+       csv,
+       "file.csv",
+       "text/csv",
+       key='download-csv'
+    )
