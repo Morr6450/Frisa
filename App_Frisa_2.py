@@ -15,9 +15,9 @@ if fl is not None:
     content_type = fl.type
     
     if content_type == 'application/vnd.ms-excel':
-        df = pd.read_excel(io.BytesIO(content), encoding='utf-8')
+        df = pd.read_excel(io.BytesIO(content), encoding='cp1252')
     else:
-        df = pd.read_csv(io.StringIO(content.decode('utf-8-sig')), encoding='utf-8-sig')
+        df = pd.read_csv(io.StringIO(content.decode('utf-8')), encoding='cp1252')
 
 st.header('Archivo existente')
 st.write(df)
